@@ -44,13 +44,26 @@ const SignupButton = styled(Button)`
    border-radius: 2px;
    box-shadow: 0 2px 4px 0 rgb(0 0 0/ 20%);
 `;
+//we are creating a demi object for storing values coming from form, later we have to create another state for this.
+const signupInitialValues = {
+   name: ``,
+   username: ``,
+   password: ``,
+};
 
 const Login = () => {
    const imageURL =
       "https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png";
+
    const [account, toggleAccount] = useState(`login`); //for default state
+   const [signup, setSignup] = useState(signupInitialValues);
+
    const toggleSignup = () => {
       account === `signup` ? toggleAccount(`login`) : toggleAccount(`signup`);
+   };
+
+   const onInputChange = (e) => {
+      setSignup({ ...signup, [e.target.name]: e.target.value });
    };
 
    return (
@@ -73,11 +86,23 @@ const Login = () => {
                </Wrapper>
             ) : (
                <Wrapper>
-                  <TextField variant="standard" label="Enter Name" />
-                  <TextField variant="standard" label="Enter Username" />
                   <TextField
                      variant="standard"
+                     onChange={(e) => onInputChange(e)}
+                     name="name"
+                     label="Enter Name"
+                  />
+                  <TextField
+                     variant="standard"
+                     name="username"
+                     onChange={(e) => onInputChange(e)}
+                     label="Enter Username"
+                  />
+                  <TextField
+                     variant="standard"
+                     name="password"
                      id="outlined-password-input"
+                     onChange={(e) => onInputChange(e)}
                      label="Enter Password"
                      type="password"
                      autoComplete="current-password"
