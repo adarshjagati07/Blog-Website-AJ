@@ -1,9 +1,21 @@
-import express from "express";
+import express, { Router } from "express";
+import morgan from "morgan";
 import Connection from "./database/db.js";
 import dotenv from "dotenv";
+import router from "./routes/route.js";
+import cors from "cors";
+import bodyParser from "body-parser";
 
-dotenv.config();
 const app = express();
+app.use(cors());
+dotenv.config();
+
+app.use(morgan("dev"));
+
+app.use(express.json());
+app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(`/`, router);
 
 const PORT = 8000;
 
