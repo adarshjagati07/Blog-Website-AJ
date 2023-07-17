@@ -1,6 +1,8 @@
 import { Box, TextField, Button, styled, Typography } from "@mui/material";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { API } from "../../service/api";
+import { DataContext } from "../../context/DataProvider";
+import { useNavigate } from "react-router-dom";
 
 //for CSS styling in material ui
 const Component = styled(Box)`
@@ -57,6 +59,10 @@ const signupInitialValues = {
    username: ``,
    password: ``,
 };
+const loginInitialValues = {
+   username: ``,
+   password: ``,
+};
 
 const Login = () => {
    const imageURL =
@@ -65,6 +71,9 @@ const Login = () => {
    const [account, toggleAccount] = useState(`login`); //for default state
    const [signup, setSignup] = useState(signupInitialValues);
    const [error, setError] = useState("");
+   const [login, setLogin] = useState(loginInitialValues);
+   const { setAccount } = useContext(DataContext);
+   const navigate = useNavigate();
 
    const toggleSignup = () => {
       account === `signup` ? toggleAccount(`login`) : toggleAccount(`signup`);
@@ -80,9 +89,25 @@ const Login = () => {
          setError("Something went wrong! Please try again.");
       }
    };
-
    const onInputChange = (e) => {
       setSignup({ ...signup, [e.target.name]: e.target.value });
+   };
+
+   const loginUser = async () => {
+      let response = await API.userLogin(login);
+      if (response.isSuccess) {
+         setError("");
+
+         sessionStorage.setItem("accessToken", `Bearer ${response.data.accessToken}`);
+         sessionStorage.setItem("refreshToken", `Bearer ${response.data.refreshToken}`);
+         setAccount({ username: response.data.username, name: response.data.name });
+         navigate("/");
+      } else {
+         setError("Something went wrong! Please try again.");
+      }
+   };
+   const onValueChange = (e) => {
+      setLogin({ ...login, [e.target.name]: e.target.value });
    };
 
    return (
@@ -91,16 +116,25 @@ const Login = () => {
             <Image src={imageURL} alt="login" />
             {account === `login` ? (
                <Wrapper>
-                  <TextField variant="standard" label="Enter Username" />
                   <TextField
                      variant="standard"
+                     onChange={(e) => onValueChange(e)}
+                     name="username"
+                     label="Enter Username"
+                  />
+                  <TextField
+                     variant="standard"
+                     onChange={(e) => onValueChange(e)}
+                     name="password"
                      id="outlined-password-input"
                      label="Enter Password"
                      type="password"
                      autoComplete="current-password"
                   />
                   {error && <Error> {error} </Error>}
-                  <LoginButton variant="contained">Login</LoginButton>
+                  <LoginButton variant="contained" onClick={() => loginUser()}>
+                     Login
+                  </LoginButton>
                   <Text style={{ textAlign: `center` }}>OR</Text>
                   <SignupButton onClick={() => toggleSignup()}>Create an account</SignupButton>
                </Wrapper>
