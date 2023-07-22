@@ -1,3 +1,5 @@
+import { TurnedIn } from "@mui/icons-material";
+
 // API notification messages
 export const API_NOTIFICATION_MESSAGES = {
    loading: {
@@ -29,4 +31,6 @@ export const SERVICE_URL = {
    userLogin: { url: `/login`, method: `POST` },
    uploadFile: { url: `/file/upload`, method: `POST` },
    createPost: { url: `/create`, method: `POST` },
+   getAllPosts: { url: `/posts`, method: `GET`, params: true },
+   getPostById: { url: `post`, method: "GET", query: true },
 };

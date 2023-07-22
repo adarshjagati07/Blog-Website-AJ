@@ -1,7 +1,7 @@
 import { Box, styled, Typography } from "@mui/material";
 
 const Image = styled(Box)`
-   background: url(https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg) center/55%
+   background: url(https://img.wallpapersafari.com/desktop/1536/864/43/34/Q2fXm3.jpg) center/75%
       repeat-x #000;
    width: 100%;
    height: 50vh;
