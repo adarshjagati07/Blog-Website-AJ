@@ -5,6 +5,9 @@ import { useEffect, useState, useContext } from "react";
 import { API } from "../../service/api";
 import { DataContext } from "../../context/DataProvider";
 
+//components
+import Comments from "./comments/Comments";
+
 //css handling
 const Container = styled(Box)(({ theme }) => ({
    margin: "50px 100px",
@@ -55,6 +58,7 @@ const Author = styled(Box)(({ theme }) => ({
 
 const Description = styled(Box)(({ theme }) => ({
    wordBreak: "break-word",
+   textAlign: "justify",
    [theme.breakpoints.down("md")]: {
       margin: "8px",
       textAlign: "justify",
@@ -112,6 +116,7 @@ const DetailView = () => {
             </Typography>
          </Author>
          <Description>{post.description}</Description>
+         <Comments post={post} />
       </Container>
    );
 };
