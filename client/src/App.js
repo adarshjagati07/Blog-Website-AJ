@@ -30,7 +30,11 @@ function App() {
    return (
       <DataProvider>
          <BrowserRouter>
-            <div style={{ marginTop: 65 }}>
+            <div
+               style={{
+                  boxSizing: "border-box",
+               }}
+            >
                <Routes>
                   <Route
                      path="/login"

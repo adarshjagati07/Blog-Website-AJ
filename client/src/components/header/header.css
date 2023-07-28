@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+#headerContainer{
+
+    background: rgba(255, 221, 204,0.6);
+}
+#appHeader *{
+   box-sizing: border-box;
+   margin : 0;
+   padding: 0;
+}
+
+#appHeader li,#appHeader a,#appHeader button{
+    font-family: "Montserrat",sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    color: rgb(34, 36, 38);
+}
+
+#appHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+}
+#appHeader .logo{
+    width: 120px;
+    height:50px;
+    cursor:pointer;
+}
+#appHeader .nav_links {
+    list-style: none;
+}
+#appHeader .nav_links,#appHeader li{
+    display: inline-block;
+    padding: 0 20px;
+}
+#appHeader .nav_links,#appHeader li,#appHeader a{
+    transition: all 0.3s ease 0s;
+}
+#appHeader .nav_links,#appHeader li,#appHeader a:hover{
+    color: #0088a9;
+}
+#appHeader button{
+    padding: 9px 25px;
+    background-color: rgba(75, 77, 95,1);
+    border: none;
+    color:#EEEEEE;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+#appHeader button:hover{
+    background-color: rgba(75, 77, 95,0.8);
+}

@@ -8,7 +8,7 @@ const Home = () => {
    return (
       <>
          <Banner />
-         <Grid container>
+         <Grid container spacing={2}>
             <Grid item lg={2} sm={2} xs={12}>
                <Categories />
             </Grid>

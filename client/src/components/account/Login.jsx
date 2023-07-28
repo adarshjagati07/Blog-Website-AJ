@@ -5,11 +5,25 @@ import { DataContext } from "../../context/DataProvider";
 import { useNavigate } from "react-router-dom";
 
 //for CSS styling in material ui
+const BgContainer = styled(Box)`
+   background: url("/imgs/back.jpeg") no-repeat center;
+   background-size: cover;
+`;
+const RootContainer = styled(Box)`
+   backdrop-filter: blur(3px);
+   min-height: 100vh;
+   box-sizing: border-box;
+   padding-top: 105px;
+`;
 const Component = styled(Box)`
    width: 400px;
    margin: auto;
+   padding-top: 100;
+   border-radius: 10px;
+   background: rgba(255, 238, 204, 0.3);
    box-shadow: 5px 2px 5px 2px rgb(0 0 0/ 0.6);
 `;
+
 const Wrapper = styled(Box)`
    padding: 25px 35px;
    display: flex;
@@ -22,14 +36,14 @@ const Wrapper = styled(Box)`
    }
 `;
 const Image = styled(`img`)({
-   width: 100,
+   width: 170,
    display: `flex`,
    margin: `auto`,
-   padding: `50px 0 0`,
+   padding: `50px 0 0 0`,
 });
 const LoginButton = styled(Button)`
    text-transform: none;
-   background: #fb641b;
+   background: #fb641a;
    height: 50px;
    border-radius: 2px;
 `;
@@ -65,8 +79,7 @@ const loginInitialValues = {
 };
 
 const Login = ({ isUserAuthenticated }) => {
-   const imageURL =
-      "https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png";
+   const imageURL = "/imgs/logo-bg.png";
 
    const [account, toggleAccount] = useState(`login`); //for default state
    const [signup, setSignup] = useState(signupInitialValues);
@@ -112,66 +125,75 @@ const Login = ({ isUserAuthenticated }) => {
    };
 
    return (
-      <Component>
-         <Box>
-            <Image src={imageURL} alt="login" />
-            {account === `login` ? (
-               <Wrapper>
-                  <TextField
-                     variant="standard"
-                     onChange={(e) => onValueChange(e)}
-                     name="username"
-                     label="Enter Username"
-                  />
-                  <TextField
-                     variant="standard"
-                     onChange={(e) => onValueChange(e)}
-                     name="password"
-                     id="outlined-password-input"
-                     label="Enter Password"
-                     type="password"
-                     autoComplete="current-password"
-                  />
-                  {error && <Error> {error} </Error>}
-                  <LoginButton variant="contained" onClick={() => loginUser()}>
-                     Login
-                  </LoginButton>
-                  <Text style={{ textAlign: `center` }}>OR</Text>
-                  <SignupButton onClick={() => toggleSignup()}>Create an account</SignupButton>
-               </Wrapper>
-            ) : (
-               <Wrapper>
-                  <TextField
-                     variant="standard"
-                     onChange={(e) => onInputChange(e)}
-                     name="name"
-                     label="Enter Name"
-                  />
-                  <TextField
-                     variant="standard"
-                     name="username"
-                     onChange={(e) => onInputChange(e)}
-                     label="Enter Username"
-                  />
-                  <TextField
-                     variant="standard"
-                     name="password"
-                     id="outlined-password-input"
-                     onChange={(e) => onInputChange(e)}
-                     label="Enter Password"
-                     type="password"
-                     autoComplete="current-password"
-                  />
-                  {error && <Error> {error} </Error>}
-                  <SignupButton onClick={() => signupUser()}>SignUp</SignupButton>
-                  <Text style={{ textAlign: `center` }}>OR</Text>
-                  <LoginButton variant="contained" onClick={() => toggleSignup()}>
-                     Already have an account
-                  </LoginButton>
-               </Wrapper>
-            )}
-         </Box>
-      </Component>
+      <BgContainer>
+         <RootContainer>
+            <Component>
+               <Box>
+                  <Image src={imageURL} alt="login" />
+                  {account === `login` ? (
+                     <Wrapper>
+                        <TextField
+                           variant="standard"
+                           onChange={(e) => onValueChange(e)}
+                           name="username"
+                           autoComplete="off"
+                           style={{ background: "transparent" }}
+                           label="Enter Username"
+                        />
+                        <TextField
+                           variant="standard"
+                           onChange={(e) => onValueChange(e)}
+                           name="password"
+                           id="outlined-password-input"
+                           label="Enter Password"
+                           style={{ background: "transparent" }}
+                           type="password"
+                           autoComplete="current-password"
+                        />
+                        {error && <Error> {error} </Error>}
+                        <LoginButton variant="contained" onClick={() => loginUser()}>
+                           Login
+                        </LoginButton>
+                        <Text style={{ textAlign: `center` }}>OR</Text>
+                        <SignupButton onClick={() => toggleSignup()}>
+                           Create an account
+                        </SignupButton>
+                     </Wrapper>
+                  ) : (
+                     <Wrapper>
+                        <TextField
+                           variant="standard"
+                           onChange={(e) => onInputChange(e)}
+                           name="name"
+                           label="Enter Name"
+                        />
+                        <TextField
+                           variant="standard"
+                           name="username"
+                           onChange={(e) => onInputChange(e)}
+                           label="Enter Username"
+                        />
+                        <TextField
+                           variant="standard"
+                           name="password"
+                           id="outlined-password-input"
+                           onChange={(e) => onInputChange(e)}
+                           label="Enter Password"
+                           type="password"
+                           autoComplete="current-password"
+                        />
+                        {error && <Error> {error} </Error>}
+                        <SignupButton onClick={() => signupUser()}>SignUp</SignupButton>
+                        <Text style={{ textAlign: `center` }}>OR</Text>
+                        <LoginButton variant="contained" onClick={() => toggleSignup()}>
+                           Already have an account
+                        </LoginButton>
+                     </Wrapper>
+                  )}
+               </Box>
+            </Component>
+         </RootContainer>
+      </BgContainer>
    );
 };
 

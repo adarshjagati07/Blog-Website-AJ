@@ -6,7 +6,7 @@ import { DataContext } from "../../context/DataProvider";
 import { API } from "../../service/api";
 
 const Container = styled(Box)(({ theme }) => ({
-   margin: "65px 100px",
+   margin: "35px 80px",
    [theme.breakpoints.down("md")]: {
       margin: "3px",
    },

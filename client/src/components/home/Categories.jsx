@@ -6,12 +6,23 @@ const StyledTable = styled(Table)`
    border: 2px solid rgba(224, 224, 224, 1);
    margin-left: 3px;
    padding: 0 20px;
+   box-sizing: border-box;
+   border-radius: 10px;
 `;
 const StyledButton = styled(Button)`
    margin: 20px;
    width: 85%;
    background: #6495ed;
    color: #fff;
+`;
+const StyledTableCell = styled(TableCell)`
+   display: flex;
+   justify-content: center;
+   font-weight: 600;
+   background: "#f1f1f1";
+   &:hover: {
+      background: "#f00";
+   }
 `;
 const StyledLink = styled(Link)`
    text-decoration: none;
@@ -31,17 +42,19 @@ const Categories = () => {
          <StyledTable>
             <TableHead>
                <TableRow>
-                  <TableCell>
+                  <StyledTableCell
+                     style={{ background: " rgba(255, 221, 204,0.4)", borderRadius: "5px" }}
+                  >
                      <StyledLink to="/">All Categories</StyledLink>
-                  </TableCell>
+                  </StyledTableCell>
                </TableRow>
             </TableHead>
             <TableBody>
                {categories.map((category) => (
                   <TableRow key={category.id}>
-                     <TableCell>
+                     <StyledTableCell>
                         <StyledLink to={`/?category=${category.type}`}>{category.type}</StyledLink>
-                     </TableCell>
+                     </StyledTableCell>
                   </TableRow>
                ))}
             </TableBody>
